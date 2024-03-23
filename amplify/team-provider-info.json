@@ -10,6 +10,11 @@
       "StackName": "amplify-hacklifyuncommonhack-dev-142113",
       "StackId": "arn:aws:cloudformation:us-east-2:424262792323:stack/amplify-hacklifyuncommonhack-dev-142113/8448cf80-e94a-11ee-ac49-064e4cb27989",
       "AmplifyAppId": "d3m5qj4m1b3jbe"
+    },
+    "categories": {
+      "auth": {
+        "hacklifyuncommonhack6d92bf54": {}
+      }
     }
   }
 }
