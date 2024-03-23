@@ -5,8 +5,6 @@
 
 require("@tensorflow/tfjs-node");
 const sentence_encoder = require("@tensorflow-models/universal-sentence-encoder");
-const { floor } = require("@tensorflow/tfjs");
-const { randomInt } = require("crypto");
 
 class RecommendationSystem {
   constructor() {
