@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SiteHomeNav from './Components/Common/SiteHomeNav';
+import SiteFooter from './Components/Common/SiteFooter';
 
 
 
@@ -17,6 +18,7 @@ function App() {
         
         <h3 className='h3p1'><Link to='/homepage'>Create an account or login to get started</Link></h3>
       </div>
+      <SiteFooter />
     </div>
   );
 }

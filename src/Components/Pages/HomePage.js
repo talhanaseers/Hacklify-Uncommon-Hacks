@@ -33,7 +33,7 @@ export default function HomePage() {
                             src="/img/Hacklify.svg" 
                             fluid/>
                     </Col>
-                    <Col xs={4} sm={6}>
+                    <Col xs={4} sm={6} style={{color: "white"}}>
                         <h1>Visit your profile</h1>
                         <Link to= '/Profile'>
                             <Button variant="primary" type="submit">
@@ -42,7 +42,7 @@ export default function HomePage() {
                         </Link>
                     </Col>
 
-                    <Col xs={4} sm={6}>
+                    <Col xs={4} sm={6} style={{color: "white"}}>
                         <h1>View upcoming hackathons</h1>
                         <Link to= '/upcomingHackathons'>
                             <Button variant="primary" type="submit">
@@ -51,7 +51,7 @@ export default function HomePage() {
                         </Link>
                     </Col>
 
-                    <Col xs={4} sm={6}>
+                    <Col xs={4} sm={6} style={{color: "white"}}>
                         <h1>Find a team</h1>
                         <Link to= '/matchMaking'>
                             <Button variant="primary" type="submit">
