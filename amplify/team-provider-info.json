@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hacklifyuncommonhack-dev-142113-authRole",
+      "UnauthRoleArn": "arn:aws:iam::424262792323:role/amplify-hacklifyuncommonhack-dev-142113-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::424262792323:role/amplify-hacklifyuncommonhack-dev-142113-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-hacklifyuncommonhack-dev-142113-deployment",
+      "UnauthRoleName": "amplify-hacklifyuncommonhack-dev-142113-unauthRole",
+      "StackName": "amplify-hacklifyuncommonhack-dev-142113",
+      "StackId": "arn:aws:cloudformation:us-east-2:424262792323:stack/amplify-hacklifyuncommonhack-dev-142113/8448cf80-e94a-11ee-ac49-064e4cb27989",
+      "AmplifyAppId": "d3m5qj4m1b3jbe"
+    },
+    "categories": {
+      "auth": {
+        "hacklifyuncommonhack6d92bf54": {}
+      }
+    }
+  }
+}
