@@ -57,7 +57,7 @@ export class RecommendationSystem {
 
   // Find a bunch of groups of hackers that are most compatible with each other
   findGroups(groupSize) {
-    let annealing = new Annealing(this.scoreGroup, 20, 50, 0.1);
+    let annealing = new Annealing(this.scoreGroup, 10, 10, 0.1);
     return annealing.anneal(this.hackers, groupSize);
   }
 }
