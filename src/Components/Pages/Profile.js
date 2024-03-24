@@ -1,5 +1,8 @@
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
+
 import SiteNav from "../Common/SiteNav";
 import SiteFooter from "../Common/SiteFooter";
 
@@ -9,11 +12,18 @@ import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
-import Form from "react-bootstrap/Form";
-
 import awsExports from "../../aws-exports";
-import { render } from "@testing-library/react";
+import { deleteUser } from "aws-amplify/auth";
+
 Amplify.configure(awsExports);
+
+async function deleteAccount() {
+  try {
+    await deleteUser();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const skills = [
   "C++",
@@ -79,20 +89,22 @@ export default function Profile() {
     }
   };
 
-  const [hackathon_goal, set_hackathon_goal] = useState("I want to learn new skills and meet new people.");
+  const [hackathon_goal, set_hackathon_goal] = useState(
+    "I want to learn new skills and meet new people."
+  );
 
   const [editing, setEditing] = useState(null);
 
-  const renderName = (editing, name) => {
-    if (editing === "name") {
+  const renderName = (name) => {
+    if (editing) {
       return <Form.Control placeholder={`${name}`} type="text" />;
     } else {
       return <p>{name}</p>;
     }
   };
 
-  const renderSkills = (editing) => {
-    if (editing === "skills") {
+  const renderSkills = () => {
+    if (editing) {
       return (
         <div
           style={{
@@ -118,15 +130,20 @@ export default function Profile() {
       return skills
         .filter((option) => selected_skills.includes(option))
         .map((option) => (
-          <Badge key={`${option}`} bg="secondary" style={{ margin: "2px" }}>
+          <Badge
+            pill
+            key={`${option}`}
+            bg="secondary"
+            style={{ margin: "2px" }}
+          >
             {`${option}`}
           </Badge>
         ));
     }
   };
 
-  const renderInterests = (editing) => {
-    if (editing === "interests") {
+  const renderInterests = () => {
+    if (editing) {
       return (
         <div
           style={{
@@ -152,15 +169,20 @@ export default function Profile() {
       return interests
         .filter((option) => selected_interests.includes(option))
         .map((option) => (
-          <Badge key={`${option}`} bg="secondary" style={{ margin: "2px" }}>
+          <Badge
+            pill
+            key={`${option}`}
+            bg="secondary"
+            style={{ margin: "2px" }}
+          >
             {`${option}`}
           </Badge>
         ));
     }
   };
 
-  const renderHackathonPurpose = (editing) => {
-    if (editing === "hackathon goal") {
+  const renderHackathonPurpose = () => {
+    if (editing) {
       return (
         <Form.Control
           as="textarea"
@@ -171,26 +193,33 @@ export default function Profile() {
         />
       );
     } else {
-      return (
-        <p>
-          {`${hackathon_goal}`}
-        </p>
-      );
+      return <p>{`${hackathon_goal}`}</p>;
     }
   };
 
-  const editButton = (editing, field) => {
-    if (editing === field) {
+  const editButton = () => {
+    if (editing) {
       return (
-        <Button variant="primary" onClick={() => setEditing(null)}>
-          Save
-        </Button>
+        <button
+          style={{ margin: "10px" }}
+          onClick={() => setEditing(false)}
+          className="unstyled"
+        >
+          &#10003; Save
+        </button>
       );
     } else {
       return (
-        <Button variant="secondary" onClick={() => setEditing(field)}>
-          Edit
-        </Button>
+        <button onClick={() => setEditing(true)} className="unstyled">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 -960 960 960"
+            width="24"
+          >
+            <path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+          </svg>
+        </button>
       );
     }
   };
@@ -198,93 +227,137 @@ export default function Profile() {
   return (
     <Authenticator loginMechanism={["email"]}>
       {({ signOut, user }) => (
-        <div>
+        <>
           <SiteNav logOut={signOut} />
-          <h1>{user.username}'s profile</h1>
-          <Form
-            style={{
-              margin: "10px",
-            }}
-          >
-            <Form.Group className="mb-3" controlId="formGroupName">
-              <Form.Label
-                style={{
-                  textAlign: "center",
-                  marginBottom: "10px",
-                  fontSize: "2em",
-                }}
-              >
-                Name
-                {editButton(editing, "name")}
-              </Form.Label>
-              <div
-                style={{
-                  margin: "10px",
-                }}
-              >
-                {renderName(editing, user.username)}
-              </div>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGroupSkills">
-              <Form.Label
-                style={{
-                  textAlign: "center",
-                  marginBottom: "10px",
-                  fontSize: "2em",
-                }}
-              >
-                Skills
-                {editButton(editing, "skills")}
-              </Form.Label>
-              <div
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                margin: "10px",
+              }}
+            >
+              <Image src="/img/profile.svg" width="25%" />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                margin: "10px",
+              }}
+            >
+              <h1>{user.username}'s profile</h1>
+              {editButton()}
+            </div>
+            <div>
+              <Form
                 style={{
                   margin: "10px",
                 }}
               >
-                {renderSkills(editing)}
-              </div>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGroupInterests">
-              <Form.Label
-                style={{
-                  textAlign: "center",
-                  marginBottom: "10px",
-                  fontSize: "2em",
-                }}
-              >
-                Interests
-                {editButton(editing, "interests")}
-              </Form.Label>
-              <div
-                style={{
-                  margin: "10px",
-                }}
-              >
-                {renderInterests(editing)}
-              </div>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGroupHackathon">
-              <Form.Label
-                style={{
-                  textAlign: "center",
-                  marginBottom: "10px",
-                  fontSize: "2em",
-                }}
-              >
-                What do you want to get out of this hackathon?
-                {editButton(editing, "hackathon goal")}
-              </Form.Label>
-              <div
-                style={{
-                  margin: "10px",
-                }}
-              >
-                {renderHackathonPurpose(editing)}
-              </div>
-            </Form.Group>
-          </Form>
+                <Form.Group className="mb-3" controlId="formGroupName">
+                  <Form.Label
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "10px",
+                      fontSize: "2em",
+                      width: "100%",
+                    }}
+                  >
+                    Name
+                  </Form.Label>
+                  <div
+                    style={{
+                      margin: "10px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {renderName(user.username)}
+                  </div>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupSkills">
+                  <Form.Label
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "10px",
+                      fontSize: "2em",
+                      width: "100%",
+                    }}
+                  >
+                    Skills
+                  </Form.Label>
+                  <div
+                    style={{
+                      margin: "10px",
+                    }}
+                  >
+                    {renderSkills()}
+                  </div>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupInterests">
+                  <Form.Label
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "10px",
+                      fontSize: "2em",
+                      width: "100%",
+                    }}
+                  >
+                    Interests
+                  </Form.Label>
+                  <div
+                    style={{
+                      margin: "10px",
+                    }}
+                  >
+                    {renderInterests()}
+                  </div>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupHackathon">
+                  <Form.Label
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "10px",
+                      fontSize: "2em",
+                      width: "100%",
+                    }}
+                  >
+                    {editing
+                      ? "What do you want to get out of this hackathon?"
+                      : "Hackathon Goal"}
+                  </Form.Label>
+                  <div
+                    style={{
+                      margin: "10px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {renderHackathonPurpose()}
+                  </div>
+                </Form.Group>
+                {editing && (
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        deleteAccount();
+                      }}
+                    >
+                      Delete Account
+                    </Button>
+                  </div>
+                )}
+              </Form>
+            </div>
+          </div>
           <SiteFooter />
-        </div>
+        </>
       )}
     </Authenticator>
   );
