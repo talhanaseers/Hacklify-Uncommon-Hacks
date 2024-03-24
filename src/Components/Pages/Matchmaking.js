@@ -25,7 +25,7 @@ Amplify.configure(awsExports);
 function createRecommendationSystem(me) {
   let recommendationSystem = new RecommendationSystem();
   let hackers = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 10; i++) {
     let hacker = randomHacker();
     hacker.name = "Hacker " + i;
     hackers.push(hacker);
