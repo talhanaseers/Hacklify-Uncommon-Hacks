@@ -22,7 +22,7 @@ export default function UpcomingHackathons() {
             <SiteNav logOut={signOut}/>
             <center class = "upcomingTitle">View Upcoming Hackathons</center>
             <div class = "ccontainer">
-              ${addCards(upcomingHackathons)}
+              {addCards(upcomingHackathons)}
             </div>
             <SiteFooter />
             
