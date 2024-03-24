@@ -34,7 +34,7 @@ We're incredibly proud of creating a user-friendly and feature-rich platform tha
 
 ## What we learned
 
-Throughout the development process, we gained valuable insights into various aspects of web development, including frontend design, backend architecture, and API integration. We learned how to leverage technologies such as React, Flask, and AWS services effectively to create scalable and performant web applications. Additionally, tackling complex challenges such as algorithm design and API integration taught us valuable problem-solving skills and deepened our understanding of software engineering principles.
+Throughout the development process, we gained valuable insights into various aspects of web development, including frontend design, backend architecture, and API integration. We learned how to leverage technologies such as React, and AWS services effectively to create scalable and performant web applications. Additionally, tackling complex challenges such as algorithm design and API integration taught us valuable problem-solving skills and deepened our understanding of software engineering principles.
 
 ## What's next for Hacklify
 
