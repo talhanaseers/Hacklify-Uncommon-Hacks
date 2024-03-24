@@ -1,12 +1,7 @@
-// This file is intentionally not referenced anywhere. It will be part of the backend once lambda functions are implemented.
+require('@tensorflow/tfjs');
+const sentence_encoder = require('@tensorflow-models/universal-sentence-encoder');
 
-// npm install @tensorflow/tfjs-node
-// npm install @tensorflow/tfjs @tensorflow-models/universal-sentence-encoder
-
-require("@tensorflow/tfjs-node");
-const sentence_encoder = require("@tensorflow-models/universal-sentence-encoder");
-
-class RecommendationSystem {
+export class RecommendationSystem {
   constructor() {
     this.hackers = [];
     this.cachedModel = null;
@@ -67,7 +62,7 @@ class RecommendationSystem {
   }
 }
 
-class Hacker {
+export class Hacker {
   constructor(name, skills, interests, goal) {
     this.name = name;
     this.skills = skills;
@@ -121,7 +116,7 @@ function structuredCloneNestedList(list) {
   });
 }
 
-class Annealing {
+export class Annealing {
   constructor(scoreGroup, population, temperature, coolingRate) {
     this.scoreGroup = scoreGroup;
     this.population = population;
@@ -220,7 +215,7 @@ class Annealing {
   }
 }
 
-function randomHacker() {
+export function randomHacker() {
   let names = ["Evan", "Talha", "Cythia", "Nathan"];
   let skills = [
     "Rust",
@@ -258,51 +253,25 @@ function randomHacker() {
     "Contribute to the culture of innovation and entrepreneurship within the tech community.",
   ];
 
-  let name = names[randomInt(0, names.length)];
-  let skillCount = randomInt(1, 5);
+  let name = names[Math.floor(Math.random() * names.length)];
+  let skillCount = Math.floor(Math.random() * 5) + 1;
   let skillsList = [];
   for (let i = 0; i < skillCount; i++) {
-    let skill = skills[randomInt(0, skills.length)];
+    let skill = skills[Math.floor(Math.random() * skills.length)];
     if (!skillsList.includes(skill)) {
       skillsList.push(skill);
     }
   }
 
-  let interestCount = randomInt(1, 4);
+  let interestCount = Math.floor(Math.random() * 3) + 1;
   let interestsList = [];
   for (let i = 0; i < interestCount; i++) {
-    let interest = interests[randomInt(0, interests.length)];
+    let interest = interests[Math.floor(Math.random() * interests.length)];
     if (!interestsList.includes(interest)) {
       interestsList.push(interest);
     }
   }
 
-  let goal = goals[randomInt(0, goals.length)];
+  let goal = goals[Math.floor(Math.random() * goals.length)];
   return new Hacker(name, skillsList, interestsList, goal);
 }
-
-async function main() {
-  let recommendationSystem = new RecommendationSystem();
-  let hackers = [];
-  for (let i = 0; i < 100; i++) {
-    let hacker = randomHacker();
-    hacker.name = "Hacker " + i;
-    hackers.push(hacker);
-  }
-  for (let hacker of hackers) {
-    recommendationSystem.addHacker(hacker);
-  }
-  await recommendationSystem.embedHackers();
-  for (let hacker of hackers) {
-    console.log("Finding matches for " + hacker.name);
-    recommendationSystem.findMatches(hacker);
-  }
-
-  let groups = recommendationSystem.findGroups(5);
-  console.log("Best set of groups of size 5:");
-  for (let group of groups) {
-    console.log(group);
-  }
-}
-
-main();

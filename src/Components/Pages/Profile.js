@@ -68,8 +68,38 @@ const interests = [
   "Networking",
 ];
 
+export function readProfile() {
+  let profile = localStorage.getItem("profile");
+  if (profile) {
+    try {
+      profile = JSON.parse(profile);
+    } catch (e) {
+      console.log(e);
+      profile = {
+        skills: [],
+        interests: [],
+        hackathon_goal: "I want to learn new skills and meet new people.",
+      };
+    }
+    console.log(profile);
+  } else {
+    profile = {
+      skills: [],
+      interests: [],
+      hackathon_goal: "I want to learn new skills and meet new people.",
+    };
+  }
+  return profile;
+}
+
 export default function Profile() {
-  const [selected_skills, set_selected_skills] = useState([]);
+  let profile = readProfile();
+  const [selected_skills, set_selected_skills] = useState(profile.skills);
+  const [selected_interests, set_selected_interests] = useState(profile.interests);
+  const [hackathon_goal, set_hackathon_goal] = useState(
+    profile.hackathon_goal
+  );
+
   const toggleSkill = (option) => {
     if (selected_skills.includes(option)) {
       set_selected_skills(selected_skills.filter((item) => item !== option));
@@ -78,7 +108,6 @@ export default function Profile() {
     }
   };
 
-  const [selected_interests, set_selected_interests] = useState([]);
   const toggleInterest = (option) => {
     if (selected_interests.includes(option)) {
       set_selected_interests(
@@ -89,11 +118,17 @@ export default function Profile() {
     }
   };
 
-  const [hackathon_goal, set_hackathon_goal] = useState(
-    "I want to learn new skills and meet new people."
-  );
-
   const [editing, setEditing] = useState(null);
+
+  const save = () => {
+    setEditing(false);
+    let profile = {
+      skills: selected_skills,
+      interests: selected_interests,
+      hackathon_goal: hackathon_goal,
+    };
+    localStorage.setItem("profile", JSON.stringify(profile));
+  };
 
   const renderName = (name) => {
     if (editing) {
@@ -212,7 +247,7 @@ export default function Profile() {
       return (
         <button
           style={{ margin: "10px" }}
-          onClick={() => setEditing(false)}
+          onClick={save}
           className="unstyled"
         >
           &#10003; Save
@@ -366,9 +401,7 @@ export default function Profile() {
                     >
                       <Button
                         variant="primary"
-                        onClick={() => {
-                          setEditing(false);
-                        }}
+                        onClick={save}
                       >
                         Save Changes
                       </Button>
