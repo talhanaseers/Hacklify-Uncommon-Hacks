@@ -167,10 +167,15 @@ export class Annealing {
         // Swap two people between two groups
         let moveFromGroup;
         let moveToGroup;
+        let loopCount = 0;
         // Keep moving until we create a new group that
         do {
           moveFromGroup = Math.floor(Math.random() * numberOfGroups);
           moveToGroup = Math.floor(Math.random() * numberOfGroups);
+          if (loopCount > 100) {
+            break;
+          }
+          loopCount++;
         } while (
           moveToGroup === moveFromGroup ||
           groups[moveFromGroup].length - 1 <= minItemsPerGroup ||

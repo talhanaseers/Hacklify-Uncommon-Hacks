@@ -99,8 +99,13 @@ function Hackers({ name }) {
   );
   let [recommendationSystem, setRecommendationSystem] = useState(()=>createRecommendationSystem(me)
   );
+  let [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    recommendationSystem.embedHackers();
+    async function load(){
+      await recommendationSystem.embedHackers();
+      setLoaded(true);
+    }
+    load()
   });
 
   let [teamSize, setTeamSize] = useState(3);
@@ -146,7 +151,7 @@ function Hackers({ name }) {
             }
           }}
         >
-          Form Teams
+          {(loaded ? "Form Teams" : "Loading...")}
         </Button>
         <div
           style={{
