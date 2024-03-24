@@ -97,7 +97,15 @@ export default function Profile() {
 
   const renderName = (name) => {
     if (editing) {
-      return <Form.Control placeholder={`${name}`} type="text" />;
+      return (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Form.Control
+            placeholder={`${name}`}
+            type="text"
+            style={{ width: "50%" }}
+          />
+        </div>
+      );
     } else {
       return <p>{name}</p>;
     }
@@ -184,13 +192,15 @@ export default function Profile() {
   const renderHackathonPurpose = () => {
     if (editing) {
       return (
-        <Form.Control
-          as="textarea"
-          placeholder="What do you want to get out of this hackathon?"
-          style={{ height: "100px" }}
-          value={hackathon_goal}
-          onChange={(e) => set_hackathon_goal(e.target.value)}
-        />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Form.Control
+            as="textarea"
+            placeholder="What do you want to get out of this hackathon?"
+            style={{ height: "100px", width: "50%" }}
+            value={hackathon_goal}
+            onChange={(e) => set_hackathon_goal(e.target.value)}
+          />
+        </div>
       );
     } else {
       return <p>{`${hackathon_goal}`}</p>;
@@ -346,16 +356,34 @@ export default function Profile() {
                   </div>
                 </Form.Group>
                 {editing && (
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        deleteAccount();
+                  <>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        margin: "10px",
                       }}
                     >
-                      Delete Account
-                    </Button>
-                  </div>
+                      <Button
+                        variant="primary"
+                        onClick={() => {
+                          setEditing(false);
+                        }}
+                      >
+                        Save Changes
+                      </Button>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          deleteAccount();
+                        }}
+                      >
+                        Delete Account
+                      </Button>
+                    </div>
+                  </>
                 )}
               </Form>
             </div>
