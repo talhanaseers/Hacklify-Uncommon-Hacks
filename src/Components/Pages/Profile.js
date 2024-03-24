@@ -295,6 +295,8 @@ export default function Profile() {
                   <div
                     style={{
                       margin: "10px",
+                      display: "flex",
+                      justifyContent: "center",
                     }}
                   >
                     {renderSkills()}
@@ -314,6 +316,8 @@ export default function Profile() {
                   <div
                     style={{
                       margin: "10px",
+                      display: "flex",
+                      justifyContent: "center",
                     }}
                   >
                     {renderInterests()}
