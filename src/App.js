@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { Link } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import SiteHomeNav from './Components/Common/SiteHomeNav';
+import SiteFooter from './Components/Common/SiteFooter';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SiteHomeNav />
+      <div className='app-container'>
+        
+        <h1 className='h1p1'>Welcome to your Hackathon community</h1>
+        <h2 className='h2p1'>Hacklify</h2>
+        <h2 className='h2p2'> — Where Hackers Meet</h2>
+        
+        <h3 className='h3p1'><Link to='/homepage'>Create an account or login to get started</Link></h3>
+      </div>
+      <SiteFooter />
     </div>
   );
 }
