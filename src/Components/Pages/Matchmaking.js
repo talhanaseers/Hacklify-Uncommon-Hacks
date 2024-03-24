@@ -97,8 +97,7 @@ function Hackers({ name }) {
     profile.interests,
     profile.hackathon_goal
   );
-  let [recommendationSystem, setRecommendationSystem] = useState(
-    createRecommendationSystem(me)
+  let [recommendationSystem, setRecommendationSystem] = useState(()=>createRecommendationSystem(me)
   );
   useEffect(() => {
     recommendationSystem.embedHackers();
