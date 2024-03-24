@@ -11,3 +11,52 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.upcoming{
+  background-color: black;
+}
+.upcomingTitle{
+  color: white;
+  text-shadow: 0px .5px 0px darkgrey;
+  font-size: larger;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.ctitle{
+  text-align: center;
+  font-size: larger;
+  
+}
+.host{
+  text-align: center;
+  font-size: x-large;
+  text-shadow: 1px 0px 1px black;
+}
+.dates{
+  text-align: center;
+}
+.loc{
+  text-align: center;
+  font-size: large;
+}
+.v{
+  text-align: center;
+  font-size: small
+
+}
+
+.ccontainer{
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.box{
+  margin: 10px;
+}
+
+.footer{
+  color: white;
+}
