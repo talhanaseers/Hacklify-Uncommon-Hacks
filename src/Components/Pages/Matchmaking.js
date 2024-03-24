@@ -140,10 +140,11 @@ function Hackers({ name }) {
       >
         <Button
           onClick={() => {
-            setRenderedTeamSize(teamSize);
-            setRecommendedTeams(recommendationSystem.findGroups(
-              teamSize
-            ));
+            let teamRecommendation = recommendationSystem.findGroups(teamSize);
+            if (teamRecommendation) {
+              setRenderedTeamSize(teamSize);
+              setRecommendedTeams(teamRecommendation);
+            }
           }}
         >
           Form Teams
