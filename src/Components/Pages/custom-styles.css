@@ -1,0 +1,24 @@
+html, body, #root {
+    height: 100%; /* Ensure the parent containers take up the full viewport height */
+    margin: 0;
+    padding: 0;
+    background-color: #162b3b;
+}
+
+[data-amplify-authenticator] {
+    --amplify-components-authenticator-container-width-max: 30rem;
+    --amplify-components-authenticator-form-padding: var(--amplify-space-xl);
+    
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;  /* Centers vertically */
+    min-height: 100vh;  /* Ensure it takes full viewport height */
+}
+
+/* Add pink border and rounded corners to the Authenticator box */
+[data-amplify-authenticator] > div {
+    border: 10px solid white; /* Apply the pink border */
+    background-color: #162b3b; /* Ensure the box background is white */
+    border-radius: 10px; /* Apply curved edges */
+    padding: 10px; /* Optional: Add some padding inside */
+}
