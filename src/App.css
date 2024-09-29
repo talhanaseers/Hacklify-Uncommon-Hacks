@@ -1,102 +1,60 @@
-.app-container {
-  background-image: url('../public/img/background-image.png'); /* Use the background-image property */
-  background-size: cover;
-  background-position: center;
-  height: 100vh; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  text-align: center; 
+/* Ensure the full height of the screen is used */
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers the main content vertically */
+  align-items: center;
+  background-color: #162b3b;
+  padding: 40px;
 }
 
-.h1p1 {
-  color: #f2f2f2; /* Lighter color for text */
-  font-size: 3em; /* Bigger font size */
-  font-weight: 100; /* Lighter font weight */
-  text-align: left; /* Align text to the left */
-  position: absolute; /* Position the text absolutely */
-  left: 140px; /* Adjust the left offset as needed */
-  top: 180px; /* Move the text up by 20 pixels */
-}
-
-.h2p1 {
-  color: #f2f2f2; /* Lighter color for text */
-  font-size: 2.6em; /* Bigger font size */
-  font-weight: 1000; /* Lighter font weight */
-  text-align: left; /* Align text to the left */
-  position: absolute; /* Position the text absolutely */
-  left: 240px; /* Adjust the left offset as needed */
-  top: 230px; /* Move the text up by 20 pixels */
-}
-
-.h2p2 {
-  color: #f2f2f2; /* Lighter color for text */
-  font-size: 2.6em; /* Bigger font size */
-  font-weight: 100; /* Lighter font weight */
-  text-align: left; /* Align text to the left */
-  position: absolute; /* Position the text absolutely */
-  left: 420px; /* Adjust the left offset as needed */
-  top: 230px; /* Move the text up by 20 pixels */
-}
-
-.h3p1 {
-  color: #f2f2f2; /* Lighter color for text */
-  font-size: 2.6em; /* Bigger font size */
-  font-weight: 100; /* Lighter font weight */
-  text-align: left; /* Align text to the left */
-  position: absolute; /* Position the text absolutely */
-  left: 210px; /* Adjust the left offset as needed */
-  top: 290px; /* Move the text up by 20 pixels */
-}
-
-.h3p1 a {
-  color: inherit; /* Set link color to inherit from parent */
-  text-decoration: underline; /* Add underline to link */
-}
-
-.homepage-container {
-  background-color: #2b2b2b;
-}
-
-/*About page*/
-.app-about-container {
-  background-color: #2b2b2b;
-  color: #f2f2f2;
-  padding: 50px 20px; 
+/* Styles for a larger box with double border */
+.center-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure content and footer are spaced */
+  align-items: center;
+  padding: 40px;
+  background-color: white;
+  border: 7px solid #162b3b; /* Inner border color (first layer) */
+  box-shadow: 0 0 0 7px white; /* Outer border color (second layer) */
+  border-radius: 15px;
   text-align: center;
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  flex-grow: 1; /* Allows the box to grow and push the footer down */
 }
 
-.h1about {
-  font-size: 2.5em;
+/* Styles for the circular image with border and shadow */
+.center-box img {
+  width: 300px; /* Keep the image size as needed */
+  height: 250px; /* Set height to match the width for a perfect circle */
+  border-radius: 50%; /* This creates the circular shape */
+  object-fit: cover; /* Ensures the image fits within the circle without stretching */
 }
 
-.about-content {
-  max-width: 800px; 
-  margin: 0 auto; 
+.description {
+  font-weight: bold;
+  color: #162b3b;
+  font-size: 25px;
 }
 
-.about-content h2 {
-  font-size: 2em;
-  margin-top: 30px; 
+/* Footer styling inside the center box */
+.px-4 {
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  margin-top: auto; /* Push the footer to the bottom of the box */
+  background-color: #162b3b; /* You can adjust the background color */
+  border-radius: 0 0 15px 15px; /* Match the border-radius of the box */
 }
 
-.about-content p {
-  font-size: 1.2em;
-}
-
-.about-content ol {
-  list-style-type: decimal;
-  margin-left: 40px; 
-}
-
-.about-content ol li {
-  margin-top: 15px; 
-}
-
-.about-content p:last-child {
-  margin-bottom: 0; 
-}
-
-.unstyled {
-  all: unset;
+/* Link styling */
+.App-link {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
 }
